@@ -1,0 +1,36 @@
+Project SAIL data report for  
+
+PK – Dotopa/STS 
+BD – Dotopa/STS 
+ID – Dotopa/STS 
+CN – Dotopa/STS 
+TW – STS
+
+
+Please use the below updated details
+
+Project ID:   18004936
+ Cost centre: 1508069901
+ Cost centre owner name:   Coppinger, Sean
+ Objective:  Project SAIL Data Consumption
+
+Contact (Project Manager) Name: Ganesan, Ananthakumar
+
+Contact People-wise id        : 1535044
+
+Contact Email address         : Ananthakumar.Ganesan@sc.com
+
+
+PRIMARY INDEX (customer_number)
+PARTITION BY case1 (
+order_total < 10000 ,
+order_total < 20000 ,
+order_total < 30000,
+NO CASE OR UNKNOWN ) ;
+2. Partition by Range - example using date range
+
+PRIMARY INDEX (customer_number)
+PARTITION BY range1 (
+Order_date BETWEEN date '2010-01-01' AND date '2010-12-01'
+EACH interval '1' month ,
+NO RANGE OR UNKNOWN);

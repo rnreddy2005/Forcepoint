@@ -1,0 +1,27 @@
+
+sqoop import --connect jdbc:teradata://EDMDEV.global.standardchartered.com/SCD02_STG_DB --username ******* --password ******* 
+--query 'select * from testtable t where $conditions' --target-dir /apps/hive/warehouse/ebbsextract.db/testtable --split-by t.empno
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+/*  command to import data from oracle to Hadoop server , we need to have JDBC connectivity established b/w hadoop server and oracle before we start sqoop  */
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+sqoop import \
+      --connect jdbc:oracle:thin:@10.20.174.88:1622/LC_SAILEDQ_OAT.hk.standardchartered.com \
+      --username A1536069 --password-file /user/devamlapp/sqoop.passwd \
+      --table LC_SAIL_OTP_LTP_001.SCBT_R_PARTY_HIST \
+      --null-string '\\N' \
+      --null-non-string '\\N' \
+      --hive-drop-import-delims \
+      --fields-terminated-by '\001' \
+      --lines-terminated-by '\n' \
+       --target-dir /user/devamlapp/output/testtestdatalab/OTP_LTP/HIST/SCBT_R_PARTY_HIST \
+      --m 15
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ command is used to export the table data (which is in emp_data file on HDFS) to the employee table in db database of Mysql database server.
+
+sqoop export --connect jdbc:teradata:thin:@10.20.204.104/SCD02_STG_DB \
+--username scd02_etl_usr \
+--table employee --export-dir /home/sitamlapp
+================================================================================================================================================
